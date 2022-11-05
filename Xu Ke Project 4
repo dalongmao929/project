@@ -1,0 +1,285 @@
+PImage bg;
+PImage img;       // The source image
+int cellsize = 4; // Dimensions of each cell in the grid
+int columns, rows;   // Number of columns and rows in our system
+
+
+PImage img2;
+int cellsize2 = 4; // Dimensions of each cell in the grid
+int columns2, rows2;   // Number of columns and rows in our system
+
+PImage img3;       // The source image
+int cellsize3 = 4; // Dimensions of each cell in the grid
+int columns3, rows3;   // Number of columns and rows in our system
+
+PImage img4;       // The source image
+int cellsize4 = 4; // Dimensions of each cell in the grid
+int columns4, rows4;   // Number of columns and rows in our system
+
+int a, a2, a3, a4;
+boolean flag, flag2, flag3, flag4;
+int t2=100,t3=100;
+
+float w, h;
+float w2, h2;
+float w3, h3;
+float w4, h4;
+
+PImage sp,sp2,sp3;
+void setup() {
+  size(1920, 1080, P3D);
+  //bg = loadImage("b.gif");  // Load the image
+  bg=loadImage("a.jpg");
+  bg.resize(1920,1080);
+  sp=loadImage("1.png");
+  sp2=loadImage("1-r.png");
+  sp3=loadImage("1-g.png");
+  a=a2=a3=a4=200;
+  img = loadImage("2.jpg");  // Load the image
+  img.resize(530, 430);
+  columns = img.width / cellsize;  // Calculate # of columns
+  rows = img.height / cellsize;  // Calculate # of rows
+
+  img2 = loadImage("3.jpg");  // Load the image
+  img2.resize(340, 280);
+  columns2 = img2.width / cellsize2;  // Calculate # of columns
+  rows2 = img2.height / cellsize2;  // Calculate # of rows
+
+  img3 = loadImage("4.jpg");  // Load the image
+  img3.resize(290, 380);
+  columns3 = img3.width / cellsize3;  // Calculate # of columns
+  rows3 = img3.height / cellsize3;  // Calculate # of rows
+
+  img4 = loadImage("5.jpg");  // Load the image
+  img4.resize(370, 250);
+  columns4 = img4.width / cellsize4;  // Calculate # of columns
+  rows4 = img4.height / cellsize4;  // Calculate # of rows
+
+  imageMode(CENTER);
+}
+int k = 0;
+int k2 = 0;
+int k3 = 0;
+int k4 = 0;
+boolean run;
+boolean run2;
+boolean run3;
+boolean run4;
+int clicknum=0;
+void draw() {
+  background(0);
+  // Begin loop for columns
+  if (flag) {
+    a-=5;
+    if (a<0)a=0;
+  }
+  if (flag2) {
+    a2-=5; 
+    if (a2<0)a2=0;
+  }
+  if (flag3) {
+    a3-=5; 
+    if (a3<0)a3=0;
+  }
+  if (flag4) {
+    a4-=5; 
+    if (a4<0)a4=0;
+  }
+  if (run) {
+    k+=80;
+    println(run);
+    for ( int i = 0; i < columns; i++) {
+      // Begin loop for rows
+      for ( int j = 0; j < rows; j++) {
+        int x = i*cellsize + cellsize/2;  // x position
+        int y = j*cellsize + cellsize/2;  // y position
+        int loc = x + y*img.width;  // Pixel array location
+        color c = img.pixels[loc];  // Grab the color
+        // Calculate a z position as a function of mouseX and pixel brightness
+        float z = (k / float(width)) * brightness(img.pixels[loc]) - 20.0;
+        // Translate to the location, set fill and stroke, and draw the rect
+        pushMatrix();
+        translate(x + 625, y + 385, z);
+        fill(c, 204);
+        noStroke();
+        rectMode(CENTER);
+        rect(0, 0, cellsize, cellsize);
+        popMatrix();
+      }
+    }
+  } else {
+    push();
+    tint(255, a);
+    image(img, 625+(530/2), 385+(430/2), w, h);
+    pop();
+  }
+
+  if (run2) {
+    k2+=30;
+
+    for ( int i = 0; i < columns2; i++) {
+      // Begin loop for rows
+      for ( int j = 0; j < rows2; j++) {
+        int x = i*cellsize2 + cellsize2/2;  // x position
+        int y = j*cellsize2 + cellsize2/2;  // y position
+        int loc = x + y*img2.width;  // Pixel array location
+        color c = img2.pixels[loc];  // Grab the color
+        // Calculate a z position as a function of mouseX and pixel brightness
+        float z = (k2 / float(width)) * brightness(img2.pixels[loc]) - 20.0;
+        // Translate to the location, set fill and stroke, and draw the rect
+        pushMatrix();
+        translate(x+154, y + 172, z);
+        fill(c, 204);
+        noStroke();
+        rectMode(CENTER);
+        rect(0, 0, cellsize2, cellsize2);
+        popMatrix();
+      }
+    }
+  } else {
+    push();
+    tint(255, a2);
+    image(img2, 154+170, 172+140, w2, h2);
+    pop();
+  }
+  if (run3) {
+    k3+=30;
+    for ( int i = 0; i < columns3; i++) {
+      // Begin loop for rows
+      for ( int j = 0; j < rows3; j++) {
+        int x = i*cellsize3 + cellsize3/2;  // x position
+        int y = j*cellsize3 + cellsize3/2;  // y position
+        int loc = x + y*img3.width;  // Pixel array location
+        color c = img3.pixels[loc];  // Grab the color
+        // Calculate a z position as a function of mouseX and pixel brightness
+        float z = (k3 / float(width)) * brightness(img3.pixels[loc]) - 20.0;
+        // Translate to the location, set fill and stroke, and draw the rect
+        pushMatrix();
+        translate(x+1251, y + 220, z);
+        fill(c, 204);
+        noStroke();
+        rectMode(CENTER);
+        rect(0, 0, cellsize3, cellsize3);
+        popMatrix();
+      }
+    }
+  } else {
+    push();
+    tint(255, a3);
+    image(img3, 1251+145, 220+190, w3, h3);
+    pop();
+  }
+  if (run4) {
+    k4+=30;
+
+    for ( int i = 0; i < columns4; i++) {
+      // Begin loop for rows
+      for ( int j = 0; j < rows4; j++) {
+        int x = i*cellsize4 + cellsize4/2;  // x position
+        int y = j*cellsize4 + cellsize4/2;  // y position
+        int loc = x + y*img4.width;  // Pixel array location
+        color c = img4.pixels[loc];  // Grab the color
+        // Calculate a z position as a function of mouseX and pixel brightness
+        float z = (k4 / float(width)) * brightness(img4.pixels[loc]) - 20.0;
+        // Translate to the location, set fill and stroke, and draw the rect
+        pushMatrix();
+        translate(x+138, y + 598, z);
+        fill(c, 204);
+        noStroke();
+        rectMode(CENTER);
+        rect(0, 0, cellsize4, cellsize4);
+        popMatrix();
+      }
+    }
+  } else {
+    push();
+    tint(255, a4);
+    image(img4, 138+(370/2), 598+(250/2), w4, h4);
+    pop();
+  }
+  if (clicknum>0) {
+    tim++;
+    if (tim>30) {
+      clicknum=0;
+      tim=0;
+    }
+  }
+  image(sp, mouseX+100, mouseY, 200, 220);  //spaceman
+  push();
+  fire();
+  pop();
+  w+=5;
+  h+=5;
+  if (w>530)w=530;
+  if (h>430)h=430;
+
+  w2+=5;
+  h2+=5;
+  if (w2>340)w2=340;
+  if (h2>280)h2=280;
+
+  w3+=5;
+  h3+=5;
+  if (w3>290)w3=290;
+  if (h3>380)h3=380;
+
+  w4+=5;
+  h4+=5;
+  if (w4>370)w4=370;
+  if (h4>250)h4=250;
+}
+
+ boolean mouseSwitch=false, moveFire = false;
+ void fire() {
+  pushMatrix();
+  if (mousePressed==true)
+  {
+    if (mouseButton==RIGHT) {
+      tint(255, 255);
+    image(sp2, mouseX+100, mouseY, 200, 220);
+    }
+    if (mouseButton==LEFT) {
+    tint(255, 255);
+    image(sp3, mouseX+100, mouseY, 200, 220);
+  }
+  }
+  popMatrix();
+}
+
+int tim;
+void mousePressed() {  
+  if (dist(mouseX, mouseY, 625+265, 385+215)<100) {
+    if (mouseButton==RIGHT) {
+      run = true;
+    }
+    if (mouseButton==LEFT) {
+      flag=true;
+    }
+  }
+  if (dist(mouseX, mouseY, 154+170, 172+140)<70) {
+    if (mouseButton==RIGHT) {
+      run2 = true;
+    }
+    if (mouseButton==LEFT) {
+      flag2=true;
+    }
+  }
+
+  if (dist(mouseX, mouseY, 1251+145, 220+190)<70) {
+    if (mouseButton==RIGHT) {
+      run3 = true;
+    } 
+    if (mouseButton==LEFT) {
+      flag3=true;
+    }
+  }
+
+  if (dist(mouseX, mouseY, 138+185, 598+125)<70) {
+    if (mouseButton==RIGHT) {
+      run4 = true;
+    } 
+    if (mouseButton==LEFT) {
+      flag4=true;
+    }
+  }
+}
